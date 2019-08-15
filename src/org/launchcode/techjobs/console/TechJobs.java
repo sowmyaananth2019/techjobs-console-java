@@ -53,7 +53,7 @@ public class TechJobs {
 
             } else { // choice is "search"
 
-                // How does the user want to search (e.g. by skill or employer)
+                // How does the user want to search (e.g. by skill or employer)1
                 String searchField = getUserSelection("Search by:", columnChoices);
 
                 // What is their search term?
@@ -61,7 +61,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -111,6 +111,24 @@ public class TechJobs {
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
 
-        System.out.println("printJobs is not implemented yet");
+        if (someJobs.size() > 0) {
+            for (HashMap<String, String> job : someJobs) { //printing all jobs
+            System.out.println("\n*****");
+
+                for (String key : job.keySet()) { //within each job looping thru all keys of a hashmap
+                    String value = job.get(key);
+                    System.out.println(key + " : " + value);
+                }
+
+                System.out.println("*****");                   //to print to the console to print between each job
+            }
+
+        } else {
+
+            System.out.println("No Jobs Found");
+
+        }
+
     }
+
 }
